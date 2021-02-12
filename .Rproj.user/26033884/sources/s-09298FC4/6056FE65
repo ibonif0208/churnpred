@@ -1,0 +1,32 @@
+{
+    "id": "6056FE65",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1613125807872.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "expression": "highestprob",
+        "caption": "highestprob",
+        "totalObservations": 1,
+        "displayedObservations": 1,
+        "variables": 17,
+        "cacheKey": "43FCEC18",
+        "object": "highestprob",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=highestprob&cache_key=43FCEC18&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2318265438588531822,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1613125807872,
+    "read_only": false,
+    "read_only_alternatives": []
+}

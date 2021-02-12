@@ -1,0 +1,32 @@
+{
+    "id": "CBB40870",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1613125811766.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "expression": "lowestprob",
+        "caption": "lowestprob",
+        "totalObservations": 1,
+        "displayedObservations": 1,
+        "variables": 17,
+        "cacheKey": "B9BB69C7",
+        "object": "lowestprob",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=lowestprob&cache_key=B9BB69C7&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 8026296482479088186,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1613125811766,
+    "read_only": false,
+    "read_only_alternatives": []
+}

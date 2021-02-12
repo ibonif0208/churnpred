@@ -1,0 +1,64 @@
+#load the packages
+library(proftools)
+library(data.table)
+library(lubridate)
+library(ggplot2)
+library(Hmisc)
+library(profvis)
+library(dplyr)
+library(testthat)
+
+#1. Setup R and read in data
+setwd("C:/Users/ineaz/OneDrive - uzh.ch/UZH_Master/FS 2021/R - Introduction")
+data_customer <- fread("data_customer.csv")
+data_personal <- fread("data_personal.csv")
+
+#2. Prepare data for analysis
+data_all <- merge(data_customer, data_personal, by="CustomerId", all=TRUE)
+data_all$Exited <- as.factor(data_all$Exited)
+data_all$Gender <- as.factor(data_all$Gender)
+str(data_all)
+summary(data_all)
+
+#3. Predict churn probability
+# Logistics Regression
+glm.fit <- glm(Exited ~ CreditScore + Gender + Age + Tenure + Balance + NumOfProducts + HasCrCard + IsActiveMember + EstimatedSalary, data = data_all, family = binomial)
+prediction <- predict(glm.fit, data_all, type="response")
+data_all$Prediction=prediction
+maxprediction <- max(data_all[, Prediction])
+minprediction <- min(data_all[, Prediction])
+#data_all[, Prediction==maxprediction, by=CustomerId]
+#data_all[, .I[which.max(Prediction)], by = CustomerId]
+highestprob <- filter(data_all, Prediction==maxprediction)
+lowestprob <- filter(data_all, Prediction==minprediction)
+femaleprob <- mean(data_all$Prediction[data_all$Gender=="Female"])
+maleprob <- mean(data_all$Prediction[data_all$Gender=="Male"])
+
+#4. Predict churn probability
+subset(data_all, CustomerId==15565701, select=Prediction)
+
+
+showprediction <- function(data, x){
+  result <-  subset(data, CustomerId==x, select=Prediction)
+  return(result)
+}
+#showprediction(data_all,15815690)
+
+#any(data_all$CustomerId==15565703)
+
+showpredictioncond <- function(data, x){
+  if (any(data_all$CustomerId==x)==TRUE){
+    result <-  subset(data, CustomerId==x, select=Prediction)
+    return(result)
+  } else { print("CustomerID does not exist!")
+}
+}
+#testing
+showpredictioncond(data_all,15565703)
+
+#testing with test_that
+test_that("alwayshighest", {  
+  expect_lt(showpredictioncond(data_all,15662641),showpredictioncond(data_all,15653251))
+})
+
+#5. Create a dashboard 
